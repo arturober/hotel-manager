@@ -16,6 +16,15 @@ $app->notFound(function () {
     echo json_encode(['ok' => false, ' error' => 'Service not found']);
 });
 
+$auth = new MicroCollection();
+
+$auth->setHandler(new AuthController());
+$auth->setPrefix('/auth');
+
+$auth->post('/login', 'login');
+
+$app->mount($auth);
+
 $clients = new MicroCollection();
 
 $clients->setHandler(new ClientController());

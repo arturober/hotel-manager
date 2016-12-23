@@ -1,14 +1,15 @@
 <?php
 
 class ClientController extends \Phalcon\Mvc\Controller {
-
     public function getClients() {
+        $this->authentication->validaToken();
         echo json_encode(Client::find([
                 'columns' => ['id', 'name', 'email']
             ]), JSON_NUMERIC_CHECK | JSON_PRETTY_PRINT);
     }
 
     public function createClient() {
+        $this->authentication->validaToken();
         $data = $this->request->getJsonRawBody();
         $client = new Client();
         $client->setEmail($data->email);
@@ -23,6 +24,7 @@ class ClientController extends \Phalcon\Mvc\Controller {
     }
 
     public function updateClient($id) {
+        $this->authentication->validaToken();
         $client = Client::findFirst('id = ' . $id);
         if (!$client) {
             exit(json_encode(['ok' => false, 'error' => "This client doesn't exist"]));
@@ -44,6 +46,7 @@ class ClientController extends \Phalcon\Mvc\Controller {
     }
 
     public function deleteClient($id) {
+        $this->authentication->validaToken();
         $client = Client::findFirst('id = ' . $id);
         if (!$client) {
             exit(json_encode(['ok' => false, 'error' => "This client doesn't exist"]));

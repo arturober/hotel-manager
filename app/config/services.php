@@ -56,3 +56,6 @@ $di->setShared('db', function () {
     return $connection;
 });
 
+$di->setShared("authentication", function() {
+    return new Authentication();
+});
