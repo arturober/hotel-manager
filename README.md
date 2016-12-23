@@ -13,3 +13,5 @@ Ejecutar en la raíz del proyecto (para instalar Firebase\JWT)
 ```bash
 composer install
 ```
+
+**Hotel Manager.postman_collection.json** contiene la colección de servicios que se puede importar para probar en **Postman**
